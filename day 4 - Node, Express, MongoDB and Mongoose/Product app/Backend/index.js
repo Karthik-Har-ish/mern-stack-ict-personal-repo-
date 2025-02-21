@@ -1,23 +1,19 @@
 const express = require("express")
 require("dotenv").config()
-
 require("./connection")
 const userModel = require("./models/user.js") 
 const productModel = require("./models/product.js")
-
-
-
 const app = express();
 const PORT = 5000;
-
-
+const cors = require("cors")
 
 // middleware
+
+app.use(cors())
 app.use(express.json())
 
 
-// Signup api
-
+// api
 
 
 
@@ -62,9 +58,9 @@ app.post("/product",async (req,res)=>{
 })
 
 // PRODUCT DELETION
-app.post("/product-delete", async (req,res)=>{
+app.delete("/product-delete/:id", async (req,res)=>{
     try {
-        await productModel.findOneAndDelete({id:req.body.id})
+        await productModel.findOneAndDelete({id:req.params.id})
         res.send("product deleted!")
     } catch (error) {
         console.log(error)
@@ -73,12 +69,26 @@ app.post("/product-delete", async (req,res)=>{
 
 app.get("/shop",async (req,res)=>{
    try{
-    res.json({products:await productModel.find()})
+    console.log("Here!")
+    res.send({products:await productModel.find()})
    }
    catch(err){
     console.json({error:error})
    }
 })
+
+app.put("/product/:id", async (req,res)=>{
+    try{
+
+        await productModel.findByIdAndUpdate(req.params.id,req.body)
+        res.json({message:"Product Updated!"})
+    }
+    catch(err){
+        console.log(err)
+        res.json({message:"Product updation failed!"})
+    }
+})
+
 
 
 app.listen(PORT,()=>{
