@@ -1,0 +1,26 @@
+{
+  "name": "product-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Karthik-Har-ish/product-app-backend.git"
+  },
+  "author": "Karthik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Karthik-Har-ish/product-app-backend/issues"
+  },
+  "homepage": "https://github.com/Karthik-Har-ish/product-app-backend#readme",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.10.1",
+    "node-encryption": "^2.0.1",
+    "nodemon": "^3.1.9"
+  }
+}
