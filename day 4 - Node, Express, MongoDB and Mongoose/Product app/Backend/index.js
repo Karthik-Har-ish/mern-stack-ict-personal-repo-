@@ -50,17 +50,17 @@ app.post("/login",async (req,res)=>{
 app.post("/product",async (req,res)=>{
     try {
         await productModel(req.body).save();
-        res.send("Product added!")
+        res.json({message:"Product added!"})
         console.log("Product added!")
     } catch (error) {
-        console.log(err)
+        console.log(error)
     }
 })
 
 // PRODUCT DELETION
 app.delete("/product-delete/:id", async (req,res)=>{
     try {
-        await productModel.findOneAndDelete({id:req.params.id})
+        await productModel.findByIdAndDelete(req.params.id)
         res.send("product deleted!")
     } catch (error) {
         console.log(error)
@@ -82,6 +82,7 @@ app.put("/product/:id", async (req,res)=>{
 
         await productModel.findByIdAndUpdate(req.params.id,req.body)
         res.json({message:"Product Updated!"})
+        console.log({message:"product updated!"})
     }
     catch(err){
         console.log(err)
